@@ -12,13 +12,28 @@
 
         var canvas;
         var canvasContext;
+
         var ballX = 50; 
         var ballY = 50
         var ballSpeedX = 10;
         var ballSpeedY = 4;
 
         var paddle1Y = 250;
+        var paddle2Y = 250;
         const PADDLE_HEIGHT = 100;
+        const PADDLE_WIDTH = 10
+
+        function calculateMousePosition(evt){
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+            var mouseX = evt.clientX - rect.left - root.scrollLeft;
+            var mouseY = evt.clientY - rect.top - root.scrollTop;
+            return{
+                x:mouseX,
+                y:mouseY
+            };
+
+        }
 
         window.onload = function() {
             canvas = document.getElementById("gameCanvas")
@@ -29,8 +44,21 @@
                 moveEverything();
                 drawEverything();
             }, 1000/framesPerSecond);
+
+            canvas.addEventListener("mousemove", 
+            function(evt) {
+                var mousePos = calculateMousePosition(evt);
+                paddle1Y = mousePos.y - PADDLE_HEIGHT/2;
+
+            })
             
 
+        }
+
+        function ballReset() {
+            ballSpeedX = -ballSpeedX;
+            ballX = canvas.width/2;
+            ballY = canvas.height/2;
         }
 
         function moveEverything(){
@@ -41,11 +69,21 @@
 
             }
             if(ballX <= 0){
-                ballSpeedX = -ballSpeedX;
-
+                if(ballY > paddle1Y && ballY < paddle1Y+PADDLE_HEIGHT){
+                    ballSpeedX = -ballSpeedX;
+                }
+                else{
+                    ballReset()
+                }
+                
             }
             if(ballY >= canvas.height){
-                ballSpeedY = -ballSpeedY;
+                if(ballY > paddle2Y && ballY < paddle2Y+PADDLE_HEIGHT){
+                    ballSpeedX = -ballSpeedX;
+                }
+                else{
+                    ballReset()
+                }
 
             }
             if(ballY <= 0){
@@ -60,8 +98,12 @@
 
             
             colorRect(0,0,canvas.width,canvas.height, 'black');
+
             //This is left player paddle:
-            colorRect(20,210,10,100, "white");
+            colorRect(0,paddle1Y,PADDLE_WIDTH ,PADDLE_HEIGHT, "white");
+
+            //This is right computer paddle:
+            colorRect(canvas.width-PADDLE_WIDTH ,paddle2Y,PADDLE_WIDTH ,PADDLE_HEIGHT, "white");
 
             //This is the ball:
             colorCircle(ballX,ballY,10,"white");
