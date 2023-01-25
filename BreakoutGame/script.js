@@ -32,10 +32,10 @@ const paddle = {
 }
 
 function drawPaddle() {
-    ctx.fillStyle = "#2e3548";
+    ctx.fillStyle = "#808080";
     ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 
-    ctx.strokeStyle = "#ffcd05";
+    ctx.strokeStyle = "#00FF00";
     ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 }
 
@@ -79,9 +79,9 @@ const ball = {
 function drawBall(){
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
-    ctx.fillStyle = "#ffcd05";
+    ctx.fillStyle = "#7DF9FF";
     ctx.fill();
-    ctx.strokeStyle = "#2e3548";
+    ctx.strokeStyle = "#808080";
     ctx.stroke();
     ctx.closePath();
 }
@@ -141,7 +141,7 @@ const brick = {
     offSetLeft: 20,
     offSetTop: 20,
     marginTop: 40,
-    fillColor: "#2e3548",
+    fillColor: "#808080",
     strokeColor: "#FFF"
 }
 
