@@ -12,9 +12,9 @@ class gameModel {
         this.PADDLE_MARGIN_BOTTOM = 50;
         this.PADDLE_HEIGHT = 20;
         this.BALL_RADIUS = 8;
-        this.LIFE = 3; // The player will have 3 lives.
+        this.LIFE = 3; // The amount of lives the player will have before game over.
 
-        //Creation of paddle
+        //Creation of paddle. Position, width and height. 
         this.paddle = { 
             x: canvas.width/2 - this.PADDLE_WIDTH/2,
             y: canvas.height - this.PADDLE_MARGIN_BOTTOM - this.PADDLE_HEIGHT,
@@ -22,7 +22,7 @@ class gameModel {
             height: this.PADDLE_HEIGHT,
             dx: 5
         }
-        //Create ball
+        //Create ball. 
         this.ball = {
             x: canvas.width/2,
             y: this.paddle.y - this.BALL_RADIUS,
@@ -32,7 +32,7 @@ class gameModel {
             dy: -3
         }
     }
-    //Reset of ball after losing life
+    //Reset of ball after losing life. It will be placed on the paddle in the middle of the canvas.
     resetBall(){
         this.ball.x = canvas.width/2;
         this.ball.y = this.paddle.y - this.BALL_RADIUS;
@@ -114,10 +114,6 @@ class gameView {
         this.ball.x += this.ball.dx;
         this.ball.y += this.ball.dy;
     }
-        
-
-
-
 
     draw(){
         this.drawPaddle();
