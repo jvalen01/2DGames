@@ -47,4 +47,3 @@ The controller in this case represents the user input and the game logic, such a
 
 
 
-
