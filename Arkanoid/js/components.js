@@ -3,6 +3,9 @@
 const BG_IMG = new Image();
 BG_IMG.src = "img/bg.jpg";
 
+const BLOCK_IMG = new Image();
+BLOCK_IMG.src = "img/block.png";
+
 const LEVEL_IMG = new Image();
 LEVEL_IMG.src = "img/level.png";
 

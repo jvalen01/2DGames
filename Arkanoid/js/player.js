@@ -1,10 +1,16 @@
 class Player extends GameObject {
-    constructor(game, x, y) {
-      super(game, x, y, 50, 50)
+    constructor(game, x, y, size) {
+      super(game, x, y, size, size, size);
+      this.physical = true;
+      game.physicalObjects.push(this);
 
     }
   
     onmove(dt) {
+
+      var last_x = this.x;
+      var last_y = this.y;
+      
       // Move player based on keyboard input
       var keys = this.game.keys
       if ( keys[37] ) this.x-=5;
@@ -16,7 +22,14 @@ class Player extends GameObject {
       } else {
         //this.stopFiring()
       }
+
+      // Reset position if collision occurs
+      if (this.checkCollision(this.game.physicalObjects)) {
+        this.x = last_x;
+        this.y = last_y;
+      }
     }
+
   
     ondraw(ctx) {
       ctx.fillStyle = "blue"

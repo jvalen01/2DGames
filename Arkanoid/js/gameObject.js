@@ -1,11 +1,13 @@
 class GameObject extends Node {
-    constructor(game, x, y, width, height) {
-      super()
-      this.game = game // each gameobject can access the game object
-      this.x = x
-      this.y = y
-      this.width = width
-      this.height = height
+    constructor(game, x, y, width, height, size) {
+      super();
+      this.game = game ;// each gameobject can access the game object
+      this.x = x;
+      this.y = y;
+      this.size = size;
+      this.width = width;
+      this.height = height;
+      this.physical = false;
     }
   
     move(dt) {
@@ -26,5 +28,29 @@ class GameObject extends Node {
     onmove(dt) {}
   
     ondraw(ctx) {}
+
+    checkCollision(physicalObjects) {
+
+      // Test collision
+      for (let i in physicalObjects) {
+        var obj = physicalObjects[i];
+        // Object is not the player.
+        if (obj == this) continue;
+        // test boundaries
+        var test =
+          this.x >= obj.x + obj.size ||
+          this.x + this.size <= obj.x ||
+          this.y >= obj.y + obj.size ||
+          this.y + this.size <= obj.y;
+
+        console.log(this.x);
+        console.log(obj.x + obj.size);
+        // if collision, then return the hit object
+        if (!test) {
+          return obj;
+        }
+      }
+      return false;
+    }
   }
   
