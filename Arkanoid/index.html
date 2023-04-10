@@ -6,9 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arkanoid</title>
+    <style>
+        #gameover{
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="canvas" width="800" height="600"></canvas>  
+    <canvas id="canvas" width="400" height="500"></canvas>  
     <script src="js/components.js"></script>
     <script src="js/node.js"></script>
     <script src="js/gameobject.js"></script>
@@ -18,5 +27,6 @@
     <script src="js/brick.js"></script>
     <script src="js/level1.js"></script>
     <script src="js/ball.js"></script>
+    <script src="js/life.js"></script>
 </body>
 </html>

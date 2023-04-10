@@ -25,7 +25,6 @@ class Paddle extends GameObject {
       var keys = this.game.keys
       if ( ( keys[39] )  && this.x + this.width < this.game.canvas.width) {
         this.x+=this.dx;
-        console.log("here")
       }
 
       if ( ( keys[37] ) && this.x > 0) {

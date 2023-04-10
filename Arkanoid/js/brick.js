@@ -1,11 +1,15 @@
 class Brick extends GameObject {
-    constructor(game, row, column) {
+    constructor(game, x, y, row, column, ball) {
       let size = 50;
-      super(game, row * size, column * size, size, size, size);
-      //this.img = document.getElementById("block");
+      super(game, y, x, size, size, size);
+      
       this.physical = true;
       game.physicalObjects.push(this);
 
+      this.ball = ball;
+
+      this.x = x;
+      this.y = y;
       this.row = row;
       this.column = column;
       this.width = 55;
@@ -16,41 +20,31 @@ class Brick extends GameObject {
       this.fillColor = "#808080";
       this.strokeColor = "#FFF";
 
-      this.bricks = [];
-
     }
 
-  createBricks() {
-    for (let r = 0; r < this.row; r++) {
-      this.bricks[r] = [];
-      for (let c = 0; c < this.column; c++) {
-        this.bricks[r][c] = {
-          x: c * (this.offSetLeft + this.width) + this.offSetLeft,
-          y: r * (this.offSetTop + this.height) + this.offSetTop + this.marginTop,
-          status: true
-        }
+    ballBrickCollision() {
+      if (this.ball.x + this.ball.radius > this.x
+        && this.ball.x - this.ball.radius < this.x + this.width
+        && this.ball.y + this.ball.radius > this.y
+        && this.ball.y - this.ball.radius < this.y + this.height) {
+        BRICK_HIT.play();
+        this.ball.dy = -this.ball.dy;
+        this.game.remove(this);
+        //SCORE += SCORE_UNIT;
       }
     }
-  }
-
-  drawBricks() {
-    for (let r = 0; r < this.row; r++) {
-      for (let c = 0; c < this.column; c++) {
-        let b = this.bricks[r][c];
-        //draw the brick only if status is true
-        if (b.status) {
-          ctx.fillStyle = this.fillColor;
-          ctx.fillRect(b.x, b.y, this.width, this.height);
-          ctx.strokeStyle = this.strokeColor;
-          ctx.strokeRect(b.x, b.y, this.width, this.height);
-        }
-      }
+    onmove(dt){
+      this.ballBrickCollision();
+     
     }
-  }
+  
   
     ondraw(ctx) {
-        this.createBricks();
-        this.drawBricks();
+      ctx.beginPath();
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.fillStyle = this.fillColor;
+      ctx.fill();
+      ctx.closePath();
     }
   }
   
