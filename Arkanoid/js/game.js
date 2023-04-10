@@ -31,6 +31,12 @@ class Game extends GameObject {
 		if(this.levelCount = 1){
 			this.level1()
 		}
+		else if (this.levelCount = 2){
+			this.level2()
+		}
+		else if (this.levelCount = 3){
+			this.level3()
+		}
 		
 	}
 
@@ -52,18 +58,30 @@ class Game extends GameObject {
 
 	// create a level
 	level1() {
+		let PADDLE_MARGIN_BOTTOM = 50;
+		let PADDLE_WIDTH = 100;
+		let PADDLE_HEIGHT = 20;
+
 		this.nodes = []
-		this.add(new Background(this))
-		this.add(new Player(this, 1, 120, 50))
-		this.add(new Block(this, 0, 11))	
-		this.add(new Block(this, 1, 11))	
-		this.add(new Block(this, 2, 11))	
-		this.add(new Block(this, 3, 11))	
-		this.add(new Block(this, 4, 11))	
-		this.add(new Block(this, 5, 11))	
-		this.add(new Block(this, 6, 11))	
-		this.add(new Block(this, 7, 11))			
-		this.add(new Block(this, 8, 11))	
+		this.add(new Background(this));
+		let paddle = new Paddle(this, this.canvas.width/2 - PADDLE_WIDTH/2, this.canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT )
+		this.add(paddle);
+
+		for(let r = 0; r < 3; r++){
+			bricks[r] = [];
+			for(let c = 0; c < 5; c++){
+				bricks[r][c] = {
+					x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+					y: r * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+					status: true
+				}
+			}
+		}
+		this.add(new Brick(this, 3, 5));
+		this.add(new Ball(this, paddle.x, paddle.y, 50, bricks, paddle));
+		
+		
+		
 	}
 }
 

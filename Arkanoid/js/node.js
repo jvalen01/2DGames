@@ -1,4 +1,4 @@
-// Observer pattern implementation
+// Observer pattern implementation using node
 class Node {
     // Create new node
     constructor() {

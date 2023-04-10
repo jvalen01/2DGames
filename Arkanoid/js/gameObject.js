@@ -43,8 +43,6 @@ class GameObject extends Node {
           this.y >= obj.y + obj.size ||
           this.y + this.size <= obj.y;
 
-        console.log(this.x);
-        console.log(obj.x + obj.size);
         // if collision, then return the hit object
         if (!test) {
           return obj;

@@ -1,3 +1,4 @@
+//Takes in the game object and sets the background to orange
 class Background extends GameObject {
     constructor(game) {
         super(game, 0, 0, game.canvas.width, game.canvas.height, undefined)
