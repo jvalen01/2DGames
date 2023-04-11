@@ -38,15 +38,17 @@ class Game extends GameObject {
 
 	onloop(GAMEOVER) {
 
+		const gameover = document.getElementById("gameover");
+		const youwin = document.getElementById("youwin");
+		const youlose = document.getElementById("youlose");
+		const restart = document.getElementById("restart");
+
 		if(this.health == 0){
 			//end game
 			GAMEOVER = true;
-			const gameover = document.getElementById("gameover");
-			const youlose = document.getElementById("youlose");
+			
 			gameover.style.display = "block";
     		youlose.style.display = "block";
-
-			const restart = document.getElementById("restart");
 
 			// CLICK ON PLAY AGAIN BUTTON
 			restart.addEventListener("click", function () {
@@ -71,8 +73,16 @@ class Game extends GameObject {
 		//If completed last level, you win.
 		if(this.levelCount == 3 && this.scoreCount == 3){
 			console.log("You win!");
-			//Create a winning screen
-			return;
+
+			GAMEOVER = true;
+
+			gameover.style.display = "block";
+    		youwin.style.display = "block";
+
+			// CLICK ON PLAY AGAIN BUTTON
+			restart.addEventListener("click", function () {
+				location.reload(); // reload the page
+			})
 		}
 
 		// Get time delta
