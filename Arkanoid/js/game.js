@@ -1,13 +1,16 @@
 class Game extends GameObject {
-	constructor(canvas, levelCount) {
+	constructor(canvas) {
 		// Init game object
 		super(undefined, 0, 0, canvas.width, canvas.height, undefined)
 
 		this.canvas = canvas
 		this.ctx = canvas.getContext("2d")
-		this.levelCount = levelCount;
+		this.levelCount = 1;
 		this.scoreCount= 0;
+		this.health = 3;
 		this.bricks = [];
+
+		let GAMEOVER = false;
 
 		// Model
 		this.keys = []
@@ -23,56 +26,55 @@ class Game extends GameObject {
 			game.keys[event.keyCode] = false
 		})
 
-		if(levelCount == 1){
-			this.level1();
-		}
-		if(levelCount == 2){
-			this.level2();
-		}
-		if(levelCount == 3){
-			this.level3();
-		}
+		this.level1();
 
 		// Loop callback
 		this.loop = function() {
-			game.onloop()
+			game.onloop(GAMEOVER)
 			
 		}	
 	}
 
-	onloop() {
 
+	onloop(GAMEOVER) {
+
+		if(this.health == 0){
+			//end game
+			GAMEOVER = true;
+			const gameover = document.getElementById("gameover");
+			const youlose = document.getElementById("youlose");
+			gameover.style.display = "block";
+    		youlose.style.display = "block";
+
+			const restart = document.getElementById("restart");
+
+			// CLICK ON PLAY AGAIN BUTTON
+			restart.addEventListener("click", function () {
+				location.reload(); // reload the page
+			})
+
+		}
+
+		// Checks for if the player destroyed all bricks and can move on to next level.
 		if(this.levelCount == 1 && this.scoreCount == 1){
 			this.levelCount++;
 			this.scoreCount = 0;
+			this.level2();
 
-			if (this.levelCount == 2) {
-				this.level2();
-			  } else if (this.levelCount == 3) {
-				this.level3();
-			  } else {
-				// If the player has completed all levels, end the game
-				console.log("You win!");
-				return;
-			  }
 		}
 		if(this.levelCount == 2 && this.scoreCount == 2){
 			this.levelCount++;
 			this.scoreCount = 0;
-
-			if (this.levelCount == 3) {
-				this.level3();
-			  } else {
-				// If the player has completed all levels, end the game
-				console.log("You win!");
-				return;
-			  }
+			this.level3();
 		}
+
+		//If completed last level, you win.
 		if(this.levelCount == 3 && this.scoreCount == 3){
 			console.log("You win!");
 			//Create a winning screen
 			return;
 		}
+
 		// Get time delta
 		var now = Date.now()
 		var dt = (now - this.time) / 100
@@ -82,12 +84,15 @@ class Game extends GameObject {
 		this.move(dt)
 
 		// Draw
-		this.draw(this.ctx)
+		this.draw(this.ctx, this.scoreCount, this.health)
 
 		
 
 		// Loop animation
-		this.loopId = requestAnimationFrame(this.loop)
+		if(!GAMEOVER){
+			this.loopId = requestAnimationFrame(this.loop)
+		}
+		
 
 	}
 
@@ -210,6 +215,6 @@ class Game extends GameObject {
 
 // Init
 window.onload = function() {
-	var game = new Game(document.getElementById("canvas"), 1);
+	var game = new Game(document.getElementById("canvas"));
 	game.loop();
 }

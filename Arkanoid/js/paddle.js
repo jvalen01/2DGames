@@ -45,7 +45,7 @@ class Paddle extends GameObject {
     }
 
   
-    ondraw(ctx) {
+    ondraw(ctx, score, health) {
       ctx.fillStyle = "#808080";
       ctx.fillRect(this.x, this.y, this.width, this.height);
 

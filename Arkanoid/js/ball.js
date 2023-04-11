@@ -32,7 +32,7 @@ class Ball extends GameObject {
             //WALL_HIT.play();
         }
         if (this.y + this.radius > this.game.canvas.height) {
-            this.life.health--; // LOSE LIFE
+            this.game.health--; // LOSE LIFE
             //LIFE_LOST.play();
             this.resetBall();
         }

@@ -17,17 +17,17 @@ class GameObject extends Node {
       this.notify("move", dt)
     }
   
-    draw(ctx) {
+    draw(ctx, score, health) {
       // Trigger ondraw event
-      this.ondraw(ctx)
+      this.ondraw(ctx, score, health)
       // Notify all children
-      this.notify("draw", ctx)
+      this.notify("draw", ctx, score, health)
     }
   
     // Default event handlers
     onmove(dt) {}
   
-    ondraw(ctx) {}
+    ondraw(ctx, score, health) {}
 
     checkCollision(physicalObjects) {
 
