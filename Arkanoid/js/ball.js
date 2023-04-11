@@ -1,7 +1,6 @@
 class Ball extends GameObject {
     constructor(game, x, y, size, paddle, life) {
       super(game, x, y, size, size, size);
-      game.physicalObjects.push(this);
 
       this.game = game;
       this.paddle = paddle;
@@ -26,15 +25,15 @@ class Ball extends GameObject {
     ballWallCollision() {
         if (this.x + this.radius > this.game.canvas.width || this.x - this.radius < 0) {
             this.dx = -this.dx;
-            WALL_HIT.play();
+            //WALL_HIT.play();
         }
         if (this.y - this.radius < 0) {
             this.dy = -this.dy;
-            WALL_HIT.play();
+            //WALL_HIT.play();
         }
         if (this.y + this.radius > this.game.canvas.height) {
             this.life.health--; // LOSE LIFE
-            LIFE_LOST.play();
+            //LIFE_LOST.play();
             this.resetBall();
         }
     }

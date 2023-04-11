@@ -8,7 +8,7 @@ Simple interactive game that includes text, picture, sound and controlled by key
 - Hit every bar to progress to next level. 
 - You win if you complete all levels.
 - You lose if the ball hit the ground more than 3 times (lives). 
-- Have to implement collision logic with bars, paddle and walls.
+- Have to implement collision logic with bricks, paddle and walls.
 
 ### Description of game controls:
 - Use keyboard right and left arrow to move the paddle. 

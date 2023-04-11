@@ -1,16 +1,17 @@
 class Paddle extends GameObject {
-    constructor(game, x, y, width, height) {
-      super(game, x, y, width, height, undefined);
-      game.physicalObjects.push(this);
+    constructor(game) {
+      const PADDLE_MARGIN_BOTTOM = 50;
+		  const PADDLE_WIDTH = 100;
+		  const PADDLE_HEIGHT = 20;
 
-      let PADDLE_WIDTH = 100;
-      let PADDLE_HEIGHT = 20;
+      super(game, game.canvas.width/2 - PADDLE_WIDTH/2, game.canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_HEIGHT, undefined);
+
       this.game = game;
 
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
+      this.x = game.canvas.width/2 - PADDLE_WIDTH/2;
+      this.y = game.canvas.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT;
+      this.width = PADDLE_WIDTH;
+      this.height = PADDLE_HEIGHT;
       this.dx = 5;
 
     }

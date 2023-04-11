@@ -1,8 +1,7 @@
 //Takes in the game object and sets the background to orange
 class Life extends GameObject {
     constructor(game) {
-        super(game, 0, 0, game.canvas.width, game.canvas.height, undefined)
-        this.physical = false;
+        super(game, 0, 0, 0, 0, undefined)
         this.health = 3;
         this.textX = game.canvas.width - 80;
         this.textY = 35;

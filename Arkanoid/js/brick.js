@@ -2,9 +2,6 @@ class Brick extends GameObject {
     constructor(game, x, y, row, column, ball) {
       let size = 50;
       super(game, y, x, size, size, size);
-      
-      this.physical = true;
-      game.physicalObjects.push(this);
 
       this.ball = ball;
 
@@ -27,9 +24,10 @@ class Brick extends GameObject {
         && this.ball.x - this.ball.radius < this.x + this.width
         && this.ball.y + this.ball.radius > this.y
         && this.ball.y - this.ball.radius < this.y + this.height) {
-        BRICK_HIT.play();
+        //BRICK_HIT.play();
         this.ball.dy = -this.ball.dy;
         this.game.remove(this);
+        this.game.scoreCount+=1;
         //SCORE += SCORE_UNIT;
       }
     }
