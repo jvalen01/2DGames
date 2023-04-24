@@ -5,12 +5,12 @@ class Game extends GameObject {
 
 		this.canvas = canvas
 		this.ctx = canvas.getContext("2d")
-		this.levelCount = 1;
+		this.levelCount = 0;
 		this.scoreCount= 0;
 		this.health = 3;
 		this.bricks = [];
 
-		let GAMEOVER = false;
+		let GAME_OVER = false;
 
 		// Model
 		this.keys = []
@@ -18,6 +18,16 @@ class Game extends GameObject {
 
 		// Event handlers
 		var game = this
+
+		this.loop = function() {
+			game.onloop(GAME_OVER)
+			
+		}
+
+		const startButton = document.getElementById("start");
+		startButton.addEventListener("click", () => this.startGame());
+
+
 		window.addEventListener("keydown", function(event) {
 			game.keys[event.keyCode] = true
 		})
@@ -26,26 +36,44 @@ class Game extends GameObject {
 			game.keys[event.keyCode] = false
 		})
 
-		this.level1();
-
-		// Loop callback
-		this.loop = function() {
-			game.onloop(GAMEOVER)
 			
-		}	
 	}
 
+	showMenu() {
+		const menu = document.getElementById("menu");
+		menu.style.display = "block";
+	  }
+	
 
-	onloop(GAMEOVER) {
+	startGame() {
+		// Initialize the game
+		this.level1();
+	  
+		// Hide the menu
+		const menu = document.getElementById("menu");
+		menu.style.display = "none";
+	  
+		// Start the game loop
+		// Loop callback
+		this.loop();
+
+		
+	  }
+
+
+	onloop(GAME_OVER) {
+
+		console.log(this.scoreCount);
 
 		const gameover = document.getElementById("gameover");
 		const youwin = document.getElementById("youwin");
 		const youlose = document.getElementById("youlose");
 		const restart = document.getElementById("restart");
+		
 
 		if(this.health == 0){
 			//end game
-			GAMEOVER = true;
+			GAME_OVER = true;
 			
 			gameover.style.display = "block";
     		youlose.style.display = "block";
@@ -58,23 +86,24 @@ class Game extends GameObject {
 		}
 
 		// Checks for if the player destroyed all bricks and can move on to next level.
-		if(this.levelCount == 1 && this.scoreCount == 1){
+		if(this.levelCount == 0 && this.scoreCount == 1){
+			console.log("gets here");
 			this.levelCount++;
 			this.scoreCount = 0;
 			this.level2();
 
 		}
-		if(this.levelCount == 2 && this.scoreCount == 2){
+		if(this.levelCount == 1 && this.scoreCount == 2){
 			this.levelCount++;
 			this.scoreCount = 0;
 			this.level3();
 		}
 
 		//If completed last level, you win.
-		if(this.levelCount == 3 && this.scoreCount == 3){
+		if(this.levelCount == 2 && this.scoreCount == 3){
 			console.log("You win!");
 
-			GAMEOVER = true;
+			GAME_OVER = true;
 
 			gameover.style.display = "block";
     		youwin.style.display = "block";
@@ -99,7 +128,7 @@ class Game extends GameObject {
 		
 
 		// Loop animation
-		if(!GAMEOVER){
+		if(!GAME_OVER){
 			this.loopId = requestAnimationFrame(this.loop)
 		}
 		
@@ -226,5 +255,5 @@ class Game extends GameObject {
 // Init
 window.onload = function() {
 	var game = new Game(document.getElementById("canvas"));
-	game.loop();
+	game.showMenu();
 }
