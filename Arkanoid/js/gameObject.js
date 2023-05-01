@@ -7,7 +7,6 @@ class GameObject extends Node {
       this.size = size;
       this.width = width;
       this.height = height;
-      this.physical = false;
     }
   
     move(dt) {
@@ -29,26 +28,5 @@ class GameObject extends Node {
   
     ondraw(ctx, score, health) {}
 
-    checkCollision(physicalObjects) {
-
-      // Test collision
-      for (let i in physicalObjects) {
-        var obj = physicalObjects[i];
-        // Object is not the player.
-        if (obj == this) continue;
-        // test boundaries
-        var test =
-          this.x >= obj.x + obj.size ||
-          this.x + this.size <= obj.x ||
-          this.y >= obj.y + obj.size ||
-          this.y + this.size <= obj.y;
-
-        // if collision, then return the hit object
-        if (!test) {
-          return obj;
-        }
-      }
-      return false;
-    }
   }
   

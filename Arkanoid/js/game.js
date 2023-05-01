@@ -5,11 +5,15 @@ class Game extends GameObject {
 
 		this.canvas = canvas
 		this.ctx = canvas.getContext("2d")
+
+		//Keep track of level and score with counters:
 		this.levelCount = 0;
 		this.scoreCount= 0;
-		this.health = 3;
-		this.bricks = [];
 
+		//Keep track of health
+		this.health = 3;
+
+		this.bricks = [];
 		let GAME_OVER = false;
 
 		// Model
@@ -60,10 +64,13 @@ class Game extends GameObject {
 		
 	  }
 
+	showInstructions() {
+		//Code for instructions
+
+	}
+
 
 	onloop(GAME_OVER) {
-
-		console.log(this.scoreCount);
 
 		const gameover = document.getElementById("gameover");
 		const youwin = document.getElementById("youwin");
@@ -72,7 +79,7 @@ class Game extends GameObject {
 		
 
 		if(this.health == 0){
-			//end game
+			//end game if health is 0
 			GAME_OVER = true;
 			
 			gameover.style.display = "block";
