@@ -8,6 +8,46 @@
     <title>Arkanoid</title>
     <style>
 
+        /* Add this style to hide the instruction screen by default */
+        #instructionscreen {
+            display: none;
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* Add this style to make the instruction text stand out */
+        #instructionscreen h2 {
+            color: #FFFFFF;
+            font-size: 1.5em;
+            margin: 20px;
+            text-align: center;
+        }
+
+        /* Add this style to make the instruction text easier to read */
+        #instructionscreen p {
+            color: #FFFFFF;
+            font-size: 1.2em;
+            line-height: 1.5em;
+            margin: 20px;
+            text-align: left;
+        }
+
+        /* Add this style to make the "back" button stand out */
+        #instructionscreen #back {
+            background-color: #FFFFFF;
+            border: none;
+            color: #000000;
+            cursor: pointer;
+            font-size: 1.25em;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            width: 100px;
+        }
+
         #gameover{
             position: absolute;
             width: 400px;
@@ -58,31 +98,16 @@
             margin: 0 auto;
             text-align: center;
           }
-          #instructions{
+        #instructions{
             position: relative;
-            cursor: pointer;
             font-size: 1.25em;
             color : #000000;
             display: block;
-            margin: 10px auto;
+            margin: 0 auto;
             text-align: center;
           }
+        
     </style>
-</head>
-<body>
-
-    <div id="gameover">
-        <img src="img/youwon.png" alt="" id="youwin">
-        <img src="img/gameover.png" alt="" id="youlose">
-        <div id="restart">Play Again!</div>
-    </div>
-
-    <div id="menu">
-        <button id="start">Start Game</button>
-        <button id="instructions">Instructions</button>
-    </div>
-
-    <canvas id="canvas" width="400" height="500"></canvas>  
     <script src="js/components.js"></script>
     <script src="js/node.js"></script>
     <script src="js/gameobject.js"></script>
@@ -90,9 +115,34 @@
     <script src="js/paddle.js"></script>
     <script src="js/game.js"></script>
     <script src="js/brick.js"></script>
-    <script src="js/level1.js"></script>
     <script src="js/ball.js"></script>
     <script src="js/life.js"></script>
-    <script src="js/gameOverScreen.js"></script>
+</head>
+<body>
+
+    <!-- Game over screen -->
+    <div id="gameover">
+        <img src="img/youwon.png" alt="" id="youwin">
+        <img src="img/gameover.png" alt="" id="youlose">
+        <div id="restart">Play Again!</div>
+    </div>
+
+    <!-- Game menu -->
+    <div id="menu">
+        <button id="start">Start Game</button>
+        <button id="instructions">Instructions</button>
+    </div>
+
+    <!-- Instruction screen content -->
+    <div id="instructionscreen">
+        <h2>How to Play</h2>
+        <p>Use the left and right arrow keys to move the paddle and prevent the ball from falling off the bottom of the screen.</p>
+        <p>Destroy all of the bricks to complete the level. You lose a life every time the ball falls off the bottom of the screen.</p>
+        <p>There are 3 levels to complete. Good luck!</p>
+        <button id="back">Back</button>
+    </div>
+
+    <canvas id="canvas" width="400" height="500"></canvas>  
+    
 </body>
 </html>

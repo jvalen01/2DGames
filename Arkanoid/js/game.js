@@ -31,6 +31,9 @@ class Game extends GameObject {
 		const startButton = document.getElementById("start");
 		startButton.addEventListener("click", () => this.startGame());
 
+		const instructionButton = document.getElementById("instructions");
+		instructionButton.addEventListener("click", () => this.showInstructions());
+
 
 		window.addEventListener("keydown", function(event) {
 			game.keys[event.keyCode] = true
@@ -46,8 +49,22 @@ class Game extends GameObject {
 	showMenu() {
 		const menu = document.getElementById("menu");
 		menu.style.display = "block";
+
+		const instructions = document.getElementById("instructionscreen");
+		instructions.style.display = "none";
+
 	  }
 	
+	showInstructions(){
+		const menu = document.getElementById("menu");
+		menu.style.display = "none";
+
+		const instructions = document.getElementById("instructionscreen");
+		instructions.style.display = "block";
+
+		const backButton = document.getElementById("back");
+		backButton.addEventListener("click", () => this.showMenu());
+	}
 
 	startGame() {
 		// Initialize the game
@@ -63,11 +80,6 @@ class Game extends GameObject {
 
 		
 	  }
-
-	showInstructions() {
-		//Code for instructions
-
-	}
 
 
 	onloop(GAME_OVER) {

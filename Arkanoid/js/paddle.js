@@ -37,7 +37,7 @@ class Paddle extends GameObject {
         //Do something (Down key)
       }
       if ( keys[32] ) {  // space key
-        //this.startFiring()  // if pressed do something
+        // if pressed do something
       } else {
         //this.stopFiring()
       }
