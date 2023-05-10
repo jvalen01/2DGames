@@ -1,14 +1,11 @@
-# Arkanoid game
-
-### Rules
-Simple interactive game that includes text, picture, sound and controlled by keyboard. 
+# Arkanoid game documentation
 
 ### Basic goals and functioning of the game:
-- Should be 3 different levels you have to complete in order to win the game. 
-- Hit every bar on each level to progress to next level. 
+- There is 3 different levels you have to complete in order to win the game. 
+- Hit every brick on each level to progress to next level. 
 - You win if you complete all levels.
 - You lose if the ball hit the ground more than 3 times (lives). 
-- Have to implement collision logic with bricks, paddle and walls.
+- There is collision logic between bricks, paddle and walls.
 
 ### Description of game controls:
 - Use keyboard right and left arrow to move the paddle. 
@@ -18,6 +15,7 @@ Simple interactive game that includes text, picture, sound and controlled by key
 - Game over screen.
 - Start game screen.
 - Instruction screen.
+- Main menu screen.
 
 ### OOP description of objects in the game (classes, their attributes and methods):
 - Node class: 
@@ -47,10 +45,13 @@ Simple interactive game that includes text, picture, sound and controlled by key
         - dx: x coordinate of the ball's velocity.
         - dy: y coordinate of the ball's velocity.
         - radius: radius of the ball.
+        - speed: speed of the ball.
     - Methods:
         - ondraw: draws the ball on the canvas.
         - onmove: updates the ball's position and checks for collisions with walls or paddle.
         - reset: resets the ball's position.
+        - ballWallCollision: checks for collision between the ball and the walls.
+        - ballPaddleCollision: checks for collision between the ball and the paddle.
 
 - Paddle class:
     - The paddle is also a gameobject.
@@ -61,7 +62,7 @@ Simple interactive game that includes text, picture, sound and controlled by key
         - height: height of the paddle.
     - Methods:
         - ondraw: draws the paddle on the canvas.
-        - unmove: updates the paddle's position based on keyboard input.
+        - onmove: updates the paddle's position based on keyboard input.
 
 - Brick class:
     - Attributes:
@@ -74,9 +75,34 @@ Simple interactive game that includes text, picture, sound and controlled by key
     - Methods:
         - draw: draws the brick on the canvas.
         - update: updates the brick's position.
-        - reset: resets the brick's position.
+        - ballBrickCollision: checks for collision between the ball and the brick.
 - Game class:
 The game class inherits from the GameObject class. It has a constructor that initializes various properties such as the canvas, context, level and score counters, health, bricks array, keys, and time. It also has methods to show the menu, instructions, and to start the game. There is an onloop() method that runs the game loop by updating and drawing the game elements, and it checks for various conditions such as the health of the player, the score, and whether the game is over. It also has a method to create the bricks and methods to create different levels of the game. The game can be controlled using the keyboard arrow keys.
+
+- background class:
+    - Sets the background to the background image. 
+
+- life class:
+    - draws the lifes and life image on the canvas. 
+
+
+### Description of interesting parts of the implementation
+
+The Node class implements the Observer pattern and serves as the base class for the game objects. It allows objects to subscribe and unsubscribe to events and provides methods for notifying subscribed objects of specific events.
+
+I had some problems with the mvc pattern. 
+
+Model: The code does not explicitly define a separate model component. However, the Game class can be considered as the central component that manages the game state, including the level count, score count, health, bricks, and other game objects.
+
+View: The view component is responsible for rendering the game on the canvas and handling user interactions. The Game class manages the canvas and contains methods for drawing various game elements. It also handles user events such as key presses and button clicks.
+
+Controller: The code does not have a separate controller component. The game logic, including updating the game state and handling collisions, is directly implemented within the Game class.
+
+While the code does not strictly adhere to the MVC pattern, it does have some separation of concerns by encapsulating related functionality within the Game class and separating rendering from game logic. However, for a more structured MVC implementation, I should probably have separate classes or modules for the model, view, and controller, with clear responsibilities and interactions between them.
+
+
+### Picture from the game 
+See pictureFromGame.png in the img folder. 
 
 
 

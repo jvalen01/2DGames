@@ -1,4 +1,4 @@
-//Takes in the game object and sets the background to orange
+
 class Life extends GameObject {
     constructor(game) {
         super(game, 0, 0, 0, 0, undefined)
@@ -6,7 +6,6 @@ class Life extends GameObject {
         
     }
 
-  
     ondraw(ctx, score, health) {
         //draw text
         ctx.fillStyle = "#FFF";

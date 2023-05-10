@@ -1,13 +1,10 @@
-//Takes in the game object and sets the background to orange
+//Takes in the game object and sets the background to the background imafe
 class Background extends GameObject {
     constructor(game) {
         super(game, 0, 0, game.canvas.width, game.canvas.height, undefined)
     }
   
     ondraw(ctx) {
-      //ctx.fillStyle = "orange";
-      // fill whole canvas
-      //ctx.fillRect(0, 0, this.width, this.height);
       ctx.drawImage(BG_IMG, 0, 0);
     }
   }

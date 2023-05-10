@@ -8,104 +8,7 @@
     <title>Arkanoid</title>
     <style>
 
-        /* Add this style to hide the instruction screen by default */
-        #instructionscreen {
-            display: none;
-            position: absolute;
-            width: 400px;
-            height: 500px;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        /* Add this style to make the instruction text stand out */
-        #instructionscreen h2 {
-            color: #FFFFFF;
-            font-size: 1.5em;
-            margin: 20px;
-            text-align: center;
-        }
-
-        /* Add this style to make the instruction text easier to read */
-        #instructionscreen p {
-            color: #FFFFFF;
-            font-size: 1.2em;
-            line-height: 1.5em;
-            margin: 20px;
-            text-align: left;
-        }
-
-        /* Add this style to make the "back" button stand out */
-        #instructionscreen #back {
-            background-color: #FFFFFF;
-            border: none;
-            color: #000000;
-            cursor: pointer;
-            font-size: 1.25em;
-            margin: 20px;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            width: 100px;
-        }
-
-        #gameover{
-            position: absolute;
-            width: 400px;
-            height: 500px;
-            background-color: rgba(0,0,0,0.5);
-            display: none;
-        }
-        #youlose{
-            position: absolute;
-            top: 100px;
-            left: 0px;
-            width: 400px;
-            display: none;
-        }
-        #youwin{
-            position: absolute;
-            top: 200px;
-            left: 150px;
-            width: 100px;
-            display: none;
-        }
-        #restart{
-            position: absolute;
-            top: 310px;
-            left : 155px;
-            cursor: pointer;
-            font-size: 1.25em;
-            color : #FFF;
-        }
-        #menu{
-            position: absolute;
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            top: 200px;
-            left : 150px;
-            font-size: 1.15em;
-            color : #0f0e0e;
-            
-        }
-
-        #start{
-            position: relative;
-            font-size: 1.25em;
-            color : #000000;
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-          }
-        #instructions{
-            position: relative;
-            font-size: 1.25em;
-            color : #000000;
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-          }
+        
         
     </style>
     <script src="js/components.js"></script>
@@ -129,6 +32,7 @@
 
     <!-- Game menu -->
     <div id="menu">
+        <h1>Arkanoid</h1>
         <button id="start">Start Game</button>
         <button id="instructions">Instructions</button>
     </div>

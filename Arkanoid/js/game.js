@@ -16,11 +16,9 @@ class Game extends GameObject {
 		this.bricks = [];
 		let GAME_OVER = false;
 
-		// Model
 		this.keys = []
 		this.time = Date.now()
 
-		// Event handlers
 		var game = this
 
 		this.loop = function() {
@@ -105,25 +103,28 @@ class Game extends GameObject {
 		}
 
 		// Checks for if the player destroyed all bricks and can move on to next level.
-		if(this.levelCount == 0 && this.scoreCount == 1){
-			console.log("gets here");
+		if(this.levelCount == 0 && this.scoreCount == 5){
+			
+			//Update level and score
 			this.levelCount++;
 			this.scoreCount = 0;
 			this.level2();
 
 		}
-		if(this.levelCount == 1 && this.scoreCount == 2){
+		if(this.levelCount == 1 && this.scoreCount == 10){
+
+			//Update level and score
 			this.levelCount++;
 			this.scoreCount = 0;
 			this.level3();
 		}
 
 		//If completed last level, you win.
-		if(this.levelCount == 2 && this.scoreCount == 3){
-			console.log("You win!");
+		if(this.levelCount == 2 && this.scoreCount == 15){
 
 			GAME_OVER = true;
 
+			WIN.play();
 			gameover.style.display = "block";
     		youwin.style.display = "block";
 
@@ -179,7 +180,7 @@ class Game extends GameObject {
 	// create a level
 	level1() {
 		let rows = 1;
-		let columns = 1;
+		let columns = 5;
 		this.nodes = []
 
 		// Add background to the game
@@ -191,7 +192,7 @@ class Game extends GameObject {
 		let paddle = new Paddle(this);
 		this.add(paddle);
 		//add ball
-		let ball = new Ball(this, paddle.x, paddle.y, 50, paddle, life);
+		let ball = new Ball(this, paddle, life, 4);
 		this.add(ball);
 
 		//create bricks
@@ -210,7 +211,7 @@ class Game extends GameObject {
 	// create a level
 	level2() {
 		let rows = 2;
-		let columns = 1;
+		let columns = 5;
 		this.nodes = []
 
 		// Add background to the game
@@ -222,7 +223,7 @@ class Game extends GameObject {
 		let paddle = new Paddle(this);
 		this.add(paddle);
 		//add ball
-		let ball = new Ball(this, paddle.x, paddle.y, 50, paddle, life);
+		let ball = new Ball(this, paddle, life, 5);
 		this.add(ball);
 
 		//create bricks
@@ -241,7 +242,7 @@ class Game extends GameObject {
 	// create a level
 	level3() {
 		let rows = 3;
-		let columns = 1;
+		let columns = 5;
 		this.nodes = []
 
 		// Add background to the game
@@ -253,7 +254,7 @@ class Game extends GameObject {
 		let paddle = new Paddle(this);
 		this.add(paddle);
 		//add ball
-		let ball = new Ball(this, paddle.x, paddle.y, 50, paddle, life);
+		let ball = new Ball(this, paddle, life, 6);
 		this.add(ball);
 
 		//create bricks
