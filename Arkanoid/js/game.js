@@ -88,6 +88,7 @@ class Game extends GameObject {
 		const restart = document.getElementById("restart");
 		
 
+		//Check if the player lost the game
 		if(this.health == 0){
 			//end game if health is 0
 			GAME_OVER = true;
